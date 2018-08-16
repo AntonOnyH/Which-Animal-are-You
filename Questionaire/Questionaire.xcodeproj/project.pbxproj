@@ -14,6 +14,7 @@
 		773FB20D21204DCE0094BAE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 773FB20B21204DCE0094BAE3 /* LaunchScreen.storyboard */; };
 		773FB2152120636F0094BAE3 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773FB2142120636F0094BAE3 /* ResultsViewController.swift */; };
 		773FB2172120638C0094BAE3 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773FB2162120638C0094BAE3 /* QuestionViewController.swift */; };
+		773FB2192125A76F0094BAE3 /* Questiondata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773FB2182125A76F0094BAE3 /* Questiondata.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		773FB20E21204DCE0094BAE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		773FB2142120636F0094BAE3 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		773FB2162120638C0094BAE3 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		773FB2182125A76F0094BAE3 /* Questiondata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questiondata.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				773FB20221204DCC0094BAE3 /* AppDelegate.swift */,
+				773FB2182125A76F0094BAE3 /* Questiondata.swift */,
 				773FB20421204DCC0094BAE3 /* IntroductionViewController.swift */,
 				773FB2162120638C0094BAE3 /* QuestionViewController.swift */,
 				773FB2142120636F0094BAE3 /* ResultsViewController.swift */,
@@ -144,6 +147,7 @@
 				773FB20521204DCC0094BAE3 /* IntroductionViewController.swift in Sources */,
 				773FB20321204DCC0094BAE3 /* AppDelegate.swift in Sources */,
 				773FB2172120638C0094BAE3 /* QuestionViewController.swift in Sources */,
+				773FB2192125A76F0094BAE3 /* Questiondata.swift in Sources */,
 				773FB2152120636F0094BAE3 /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
