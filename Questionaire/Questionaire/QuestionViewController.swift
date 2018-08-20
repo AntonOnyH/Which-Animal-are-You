@@ -15,6 +15,9 @@ class QuestionViewController: UIViewController {
     
     @IBOutlet weak var singleStackView: UIStackView!
     
+    
+    @IBOutlet weak var rangedSlider: UISlider!
+    
     @IBOutlet weak var singleButton1: UIButton!
     @IBOutlet weak var singleButton2: UIButton!
     @IBOutlet weak var singleButton3: UIButton!
@@ -33,6 +36,14 @@ class QuestionViewController: UIViewController {
     
     @IBOutlet weak var progressView: UIProgressView!
     
+    @IBOutlet weak var mutliSwitch1: UISwitch!
+    @IBOutlet weak var multiSwitch2: UISwitch!
+    @IBOutlet weak var multiSwitch3: UISwitch!
+    @IBOutlet weak var multiSwitch4: UISwitch!
+    
+    
+    var answerChosen: [Answer] = []
+    
     
     var questions: [Question] = [
         Question (text: "Which of these do you enjoy most?",
@@ -42,7 +53,7 @@ class QuestionViewController: UIViewController {
                     Answer(text: "Fish", type: .cat),
                     Answer(text: "Carrots", type: .rabbit),
                     Answer(text: "Corn", type: .turtle),
-    ]),
+                    ]),
         Question (text: "Which activities do you enjoy",
                   type: Responsetype.multiple,
                   answers: [
@@ -50,7 +61,7 @@ class QuestionViewController: UIViewController {
                     Answer(text: "Sleeping", type: .cat),
                     Answer(text: "Cuddling", type: .rabbit),
                     Answer(text: "Eating", type: .dog)
-    ]),
+            ]),
         Question (text: "How much do you enjoy car rides",
                   type: Responsetype.ranged,
                   answers: [
@@ -58,7 +69,7 @@ class QuestionViewController: UIViewController {
                     Answer(text: "I get a little nervous", type: .rabbit),
                     Answer(text: "I barely notice them", type: .turtle),
                     Answer(text: "I love them", type: .dog)
-    ])
+            ])
     ]
     
     
@@ -80,14 +91,14 @@ class QuestionViewController: UIViewController {
         let currentQuestion = questions[questionIndex]
         let currentAnswers = currentQuestion.answers
         let totalProgress = Float(questionIndex) / Float(questions.count)
-            
+        
         
         navigationItem.title = "Question #\(questionIndex+1)"
         questionLabel.text = currentQuestion.text
         progressView.setProgress(totalProgress, animated: true)
         
-
-
+        
+        
         switch currentQuestion.type {
         case.single:
             singleStackView.isHidden = false
@@ -95,9 +106,9 @@ class QuestionViewController: UIViewController {
             multipleStackView.isHidden = false
         case.ranged:
             rangedStackView.isHidden = false
-        
             
-            }
+            
+        }
     }
     
     func updateSingleStack(using answers: [Answer]) {
@@ -123,4 +134,57 @@ class QuestionViewController: UIViewController {
         rangedLabel2.text = answers.last?.text
     }
     
+    @IBAction func singleAnswerButtonPressed(_ sender: UIButton) {
+        var currentAnswer = questions[questionIndex].answers
+        
+        switch sender {
+        case singleButton1:
+            currentAnswer.append(currentAnswer[0])
+        case singleButton2:
+            currentAnswer.append(currentAnswer[1])
+        case singleButton3:
+            currentAnswer.append(currentAnswer[2])
+        case singleButton4:
+            currentAnswer.append(currentAnswer[3])
+        default:
+            break
+            
+            nextQuestion()
+        }
+    }
+    
+    @IBAction func multipleAnswerButtonPressed() {
+        let currentAnswers = questions[questionIndex].answers
+        
+        if mutliSwitch1.isOn {
+            answerChosen.append(currentAnswers[0])
+        }
+        if multiSwitch2.isOn {
+            answerChosen.append(currentAnswers[1])
+        }
+        if multiSwitch3.isOn {
+            answerChosen.append(currentAnswers[2])
+        }
+        if multiSwitch4.isOn {
+            answerChosen.append(currentAnswers[3])
+        }
+        nextQuestion()
+        
 }
+    @IBAction func rangedAnswerButtonPressed() {
+        let currentAnswers = questions[questionIndex].answers
+        let index = Int(roundf(rangedSlider.value)*Float(currentAnswers.count - 1))
+        answerChosen.append(currentAnswers[index])
+        
+        nextQuestion()
+    }
+    
+}
+
+
+
+
+
+
+
+
