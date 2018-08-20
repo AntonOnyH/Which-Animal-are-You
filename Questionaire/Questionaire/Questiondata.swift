@@ -23,8 +23,8 @@ enum Responsetype {
 struct Answer {
     var text: String
     var type: Animal
-}
 
+    }
 enum Animal: Character {
     case dog = "🐶",cat = "🐱",rabbit = "🐰", turtle = "🐢"
     
@@ -40,6 +40,10 @@ enum Animal: Character {
             return "You are wise beyond your years, you focus on details. Slow and steady wins the race"
         }
     }
-}
+    }
+
+
+
+
 
 
