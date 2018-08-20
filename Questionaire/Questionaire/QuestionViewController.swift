@@ -79,12 +79,12 @@ class QuestionViewController: UIViewController {
         
         let currentQuestion = questions[questionIndex]
         let currentAnswers = currentQuestion.answers
-        //let totalProgress = Float(questionIndex)} \
-        //Float(questions.count)
+        let totalProgress = Float(questionIndex) / Float(questions.count)
+            
         
         navigationItem.title = "Question #\(questionIndex+1)"
         questionLabel.text = currentQuestion.text
-        // progressView.setProgress(totalprogress, animated: true)
+        progressView.setProgress(totalProgress, animated: true)
         
 
 
@@ -118,6 +118,7 @@ class QuestionViewController: UIViewController {
     }
     
     func updateRangedStack(using answers: [Answer]) {
+        rangedStackView.isHidden = false
         rangedLabel1.text = answers.first?.text
         rangedLabel2.text = answers.last?.text
     }
