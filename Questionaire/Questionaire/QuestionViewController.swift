@@ -36,7 +36,7 @@ class QuestionViewController: UIViewController {
     
     @IBOutlet weak var progressView: UIProgressView!
     
-    @IBOutlet weak var mutliSwitch1: UISwitch!
+    @IBOutlet weak var multiSwitch1: UISwitch!
     @IBOutlet weak var multiSwitch2: UISwitch!
     @IBOutlet weak var multiSwitch3: UISwitch!
     @IBOutlet weak var multiSwitch4: UISwitch!
@@ -80,10 +80,12 @@ class QuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updatUI()
+        updateUI()
+
+        
     }
     
-    func updatUI() {
+    func updateUI() {
         singleStackView.isHidden = true
         multipleStackView.isHidden = true
         rangedStackView.isHidden = true
@@ -107,11 +109,15 @@ class QuestionViewController: UIViewController {
         case.ranged:
             rangedStackView.isHidden = false
             
+        updateMultiplStack(using: [Answer])
+            
+            
+            
             
         }
     }
     
-    func updateSingleStack(using answers: [Answer]) {
+        func updateSingleStack(using answers: [Answer]) {
         singleStackView.isHidden = false
         singleButton1.setTitle(answers[0].text, for: .normal)
         singleButton2.setTitle(answers[1].text, for: .normal)
@@ -122,6 +128,11 @@ class QuestionViewController: UIViewController {
     
     func updateMultiplStack(using answers: [Answer]) {
         multipleStackView.isHidden = false
+        multiSwitch1.isOn = false
+        multiSwitch2.isOn = false
+        multiSwitch3.isOn = false
+        multiSwitch4.isOn = false
+        
         multiLabel1.text = answers[0].text
         multiLabel2.text = answers[1].text
         multiLabel3.text = answers[2].text
@@ -130,6 +141,7 @@ class QuestionViewController: UIViewController {
     
     func updateRangedStack(using answers: [Answer]) {
         rangedStackView.isHidden = false
+        rangedSlider.setValue(0.5, animated: false)
         rangedLabel1.text = answers.first?.text
         rangedLabel2.text = answers.last?.text
     }
@@ -148,15 +160,15 @@ class QuestionViewController: UIViewController {
             currentAnswer.append(currentAnswer[3])
         default:
             break
-            
-            nextQuestion()
         }
+        nextQuestion()
+        
     }
     
     @IBAction func multipleAnswerButtonPressed() {
         let currentAnswers = questions[questionIndex].answers
         
-        if mutliSwitch1.isOn {
+        if multiSwitch1.isOn {
             answerChosen.append(currentAnswers[0])
         }
         if multiSwitch2.isOn {
@@ -170,14 +182,33 @@ class QuestionViewController: UIViewController {
         }
         nextQuestion()
         
-}
+    }
     @IBAction func rangedAnswerButtonPressed() {
         let currentAnswers = questions[questionIndex].answers
-        let index = Int(roundf(rangedSlider.value)*Float(currentAnswers.count - 1))
+        let index = Int(round(rangedSlider.value)*Float(currentAnswers.count - 1))
         answerChosen.append(currentAnswers[index])
         
         nextQuestion()
     }
+    
+    func nextQuestion (){
+        questionIndex += 1
+        
+        if questionIndex < questions.count {
+            updateUI()
+        } else {
+            performSegue(withIdentifier: "ResultSegue", sender: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Results Segue"{
+            let resultsViewController = segue.destination as! ResultsViewController
+            resultsViewController.responses = answerChosen
+        }
+    }
+    
+    
     
 }
 

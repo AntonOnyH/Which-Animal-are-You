@@ -271,11 +271,11 @@
                         <outlet property="multiLabel2" destination="7ac-u9-kuQ" id="KLv-Mr-C2c"/>
                         <outlet property="multiLabel3" destination="eTY-lu-KIk" id="nzz-mj-RIk"/>
                         <outlet property="multiLabel4" destination="NVZ-az-YQC" id="PoG-UL-Cdj"/>
+                        <outlet property="multiSwitch1" destination="InD-Sx-So3" id="b3j-aH-xgI"/>
                         <outlet property="multiSwitch2" destination="7Sx-N2-9qv" id="dA3-NG-KeG"/>
                         <outlet property="multiSwitch3" destination="W1E-lx-xmJ" id="u7p-JR-p3x"/>
                         <outlet property="multiSwitch4" destination="QEf-in-viE" id="FH4-b9-YmS"/>
                         <outlet property="multipleStackView" destination="49F-PU-f2r" id="riA-bJ-eVz"/>
-                        <outlet property="mutliSwitch1" destination="InD-Sx-So3" id="b3j-aH-xgI"/>
                         <outlet property="progressView" destination="kqA-dI-IsT" id="x8d-Q3-6fj"/>
                         <outlet property="questionLabel" destination="LDu-K9-nrP" id="Xe4-hF-M5C"/>
                         <outlet property="rangedLabel1" destination="LCE-cn-X9S" id="Qn4-Na-ffK"/>
@@ -334,11 +334,20 @@
                         <barButtonItem title="Item" id="IBW-Sx-UcU"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Results" id="Baa-ke-MwS">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="O0Q-X6-ISe"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="O0Q-X6-ISe">
+                            <connections>
+                                <segue destination="lVK-kC-WwV" kind="unwind" unwindAction="unwindToQuizIntroductionWithSegue:" id="fBr-Uc-v2n"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="resultAnswerLabel" destination="0Z7-pa-QCI" id="4ph-pd-Bo1"/>
+                        <outlet property="resultDefinitionLabel" destination="F0p-Gc-LHa" id="2Vy-lG-2ae"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nit-a8-9eJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="lVK-kC-WwV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="767" y="-305"/>
         </scene>
